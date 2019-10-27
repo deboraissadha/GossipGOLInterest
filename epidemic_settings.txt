@@ -1,0 +1,155 @@
+#Scenario information
+## Debora Issadha
+## Revised 13-06-2019
+
+##WithInterest && WithCounter
+Scenario.name = HaggleInfocom5- [%%Group.router%%] [%%Group.nrofHosts%%] [TTL=%%Group.msgTtl%%] [ Buffer=%%Group.bufferSize%%] [%%Events2.interval%%]
+
+Scenario.simulateConnections = false
+Scenario.updateInterval = 1
+
+Scenario.endTime = 274883
+
+#987529 Haggle Cam
+#274883 Haggle 3 infocom 5
+#342915 Infocom6
+#16981816 Reality
+#6413284 Sassy
+
+Report.warmup = 1
+Scenario.nrofHostGroups = 1
+
+#Interfaces informations
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+btInterface.scanInterval = 120
+
+#Group Information
+## Buffer Size : 200 messages of 10 K ~ 2M
+Group.bufferSize = 10M
+
+Group.router = EpidemicRouter
+Group.nodeList = [LISA:0,22,2,13,26,15,6,28,39,19,32/JENNIE:12,24,3,25,5,27,29,7,40,31/JISOO:11,33,35,36,16,38,17,8,20,21/ROSE:34,1,23,14,4,37,18,9,30,10;LISA:22,34,12,35,24,16,38,6,40,20,31/JENNIE:1,3,36,25,37,39,18,29,8,9/JISOO:0,13,14,26,15,5,28,17,32,21/ROSE:11,33,23,2,4,27,7,19,30,10;LISA:11,12,13,2,14,26,4,28,8,9,20/JENNIE:22,33,35,24,36,38,17,29,19,30/JISOO:0,1,23,3,15,16,5,18,7,31/ROSE:34,25,37,27,6,39,40,10,32,21;LISA:0,1,13,3,37,4,26,17,19,30,20/JENNIE:11,23,36,5,27,16,29,18,31,32/JISOO:22,12,2,24,14,38,28,39,8,21/ROSE:33,34,35,25,15,6,7,9,40,10]
+
+## TTL 24 hours=1440, 1 week= 10080, 2 week=20160, 3 weeks= 30240, 12 Hours = 720
+Group.msgTtl = 180
+#1440 Haggle Cam
+#360 Haggle 3 infocom 5
+#10080 Reality 20160
+#360 Infocom6
+#4320 Sassy
+
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+#Group1 Information
+Group1.groupID = A
+Group.waitTime = 10, 30 
+Group.speed = 0.8, 1.4
+#0.5, 1.5
+#0.8, 1.4
+#2.5, 4.5
+
+## Total Node
+Group.nrofHosts = 41
+## Number of Hosts
+#36 Haggle Cam
+#41 Haggle
+#97 Reality
+
+Group.nodeLocation = 10, 10
+Group.movementModel = StationaryMovement
+#StationaryMovement gerak tetap
+#RandomWayPoint pergerakan acak
+
+#How many event generator
+Events.nrof = 2
+
+## Trace information
+Events1.class = ExternalEventsQueue
+Events1.filePath = Haggle3-Infocom5.txt
+#RealityConnectionTraceRevised.txt
+#Haggle4-Cam-Imote.csv
+#Haggle3-Infocom5.txt 
+#Haggle6-infocom6.csv
+#RealityConnectionTraceFinal.txt
+#sassy.csv
+
+## Message creation parameters
+Events2.class = MessageEventGenerator
+Events2.interval = 580, 620
+#97, 103
+# 25,30 (~120 texts/hour)
+# 290, 310 (~12 texts/hour)
+# 580, 620 (~ 6 texts/hour)
+# 1160, 1240 (~ 3 texts/ hour)
+# 2320, 2480 (~ 1 texts/ hour)
+
+
+##Events Size
+Events2.size = 250k, 300k
+#Haggle Cam 100k, 250k
+#Haggle 3 infocom 5  250k, 300k
+#Reality 20k
+#Infocom6 350k , 400k
+#Sassy 500k
+
+## range of message source/destination address 
+Events2.hosts = 0,40
+# 0, 35 Haggle Cam
+# 0, 40 Haggle 3 infocom 5
+# 0, 96 Reality
+# 0, 97 Infocom6
+# 0, 24 Sassy
+Events2.prefix = M
+
+##Events Time
+Events2.time = 0, 253283
+#987529 Haggle Cam 901129
+#274883 Haggle 3 infocom 5 253283
+#16981816 Reality 16377016 15772216
+#342915 Infocom6 321315
+#6413284 Sassy 6154084
+
+
+# World's size for Movement Models without implicit size (width, height; meters) 
+## Default (haggle) [100,100]
+MovementModel.worldSize = 100, 100
+MovementModel.warmup = 1
+
+# seed for movement models' pseudo random number generator (default = 0)
+## [2; 8372; 98092; 18293; 777]
+MovementModel.rngSeed = 1
+#MovementModel.rngSeed = [2; 8372; 98092; 18293; 777]
+#MovementModel.rngSeed = [1;1;1;1;1;99;99;99;99;99;344;344;344;344;344;986;986;986;986;986;631;631;631;631;631]
+#MovementModel.rngSeed = [1;99;344;986;631]
+
+#ReportsInformations
+Report.nrofReports = 12
+
+Report.reportDir = reports/HAGGLE-INFOCOM5/EPIDEMIC/
+#Report classes to load
+
+##Report EpidemicWithoutInterest
+Report.report1 = AllReportInterest
+Report.report2 = NodeInterestReport
+Report.report3 = CreatedMessagesReportInterest
+Report.report4 = ResidueInterestReport
+Report.report5 = MessageRelayedperTime
+Report.report6 = TotalMessageRelayedperTime
+Report.report7 = MessageRelayedperTimeperInterest
+Report.report8 = TotalMessageRelayedperTimeperInterest
+Report.report9 = MessageDeletedperTime
+Report.report10 = TotalMessageDeletedperTime
+Report.report11 = MessageDeletedperTimeperInterest
+Report.report12 = TotalMessageDeletedperTimeperInterest
+
+report.interval = 3600
+
+
+#MessageStatsReport
+#CommunityDetectionReport
+#NodeInterestReport
+#ConvergenceReport
+

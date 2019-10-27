@@ -1,0 +1,118 @@
+
+#Scenario information
+## Debo
+
+Scenario.name = APRIL %%Group.router%% [%%Group.nrofHosts%%]
+
+Scenario.simulateConnections = false
+Scenario.updateInterval = 1
+
+Scenario.endTime = 987529
+
+#987529 Haggle Cam
+#274883 Haggle3 Infocom05
+#16981816 Reality
+
+Report.warmup = 1
+Scenario.nrofHostGroups = 1
+
+
+#Interfaces informations
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+btInterface.scanInterval = 120
+
+#Group Information
+## Buffer Size : 200 messages of 10 K ~ 2M
+Group.bufferSize = 30M
+
+##Interest
+Group.router = DecisionEngineRouter
+DecisionEngineRouter.decisionEngine = gameoflife.EpidemicGameOfLifeWithInterest
+
+#Threshold copy
+DecisionEngineRouter.copy = 2
+
+#Threshold drop
+DecisionEngineRouter.drop = -2
+
+#Jumlah interest
+DecisionEngineRouter.nrofInterest = 4
+DecisionEngineRouter.interest = Tidur, Belajar, Makan, Nonton
+
+## TTL 24 hours=1440, 1 week= 10080, 3 weeks= 30240, 12 Hours = 720
+Group.msgTtl = 720
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+Group.nrofHosts = 38
+
+#Group1 Information
+Group1.groupID = A
+Group.waitTime = 10, 30 
+Group.speed = 0.8, 1.4
+
+#36 Haggle Cam
+#41 Haggle
+#97 Reality
+Group.nodeLocation = 10, 10
+Group.movementModel = StationaryMovement
+#StationaryMovement gerak diam
+
+#How many event generator
+Events.nrof = 2
+
+## Trace information
+Events1.class = ExternalEventsQueue
+Events1.filePath = Haggle4-Cam-Imote.csv
+#Events1.filePath = Haggle4-Cam-Imote.csv
+#RealityConnectionTraceRevised.txt
+#Haggle4-Cam-Imote.csv
+#Haggle3-Infocom5.txt 
+#RealityConnectionTraceFinal.txt
+
+
+## Message creation parameters
+Events2.class = MessageEventGenerator
+#Events2.interval = 58, 62 
+Events2.interval = 25, 30
+#97, 103
+# 25,30 (~120 texts/hour) 
+# 290, 310 (~12 texts/hour)
+# 580, 620 (~ 6 texts/hour)
+Events2.size = 10k
+
+## range of message source/destination address 
+Events2.hosts = 0, 35
+# 0, 35 Haggle Cam
+# 0,40 Haggle
+# 0,96 Reality
+Events2.prefix = M
+
+# World's size for Movement Models without implicit size (width, height; meters) 
+## Default (haggle) [100,100]
+MovementModel.worldSize = 100, 100
+MovementModel.warmup = 1
+
+# seed for movement models' pseudo random number generator (default = 0)
+## [2; 8372; 98092; 18293; 777]
+MovementModel.rngSeed = 2
+
+
+#ReportsInformations
+Report.nrofReports = 1
+
+#Report.reportDir = reports/
+Report.reportDir = reports/Haggle03-Infocom5
+#Report classes to load
+
+##Report EpidemicWithoutInterest
+#Report.report1 = AllReport
+Report.report1 = MessageStatsReport
+#Report.report2 = CommunityDetectionReport
+#Report.report3 = CreatedMessagesReportInterest
+#Report.report4 = ConvergenceReport
+#Report.report5 = NodeInterestReport
+#Report.report6 = BufferOccupancyReport
+
+

@@ -1,0 +1,68 @@
+## Scenario settings
+Scenario.name = %%Group.router%% [%%Group.nrofHosts%%] [c = %%DecisionEngineRouter.copy%%] [d = %%DecisionEngineRouter.drop%%]
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 86400
+#43200
+#86400
+
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+
+Scenario.nrofHostGroups = 1
+
+Group.movementModel = RandomWaypoint
+Group.router = DecisionEngineRouter
+DecisionEngineRouter.decisionEngine = gameoflife.EpidemicGoLwithInterest
+DecisionEngineRouter.thCopy = 3
+DecisionEngineRouter.thDelete = -3
+
+Group.interest = A, B, C, D
+
+Group.bufferSize = 10M
+Group.waitTime = 0, 120
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+Group.speed = 0.5, 1.5
+#Group.speed = 2.5, 4.5
+
+Group.msgTtl = 1440
+
+Group.nrofHosts = 50
+Group1.groupID = p
+
+Events.nrof = 1
+Events1.class = MessageEventGenerator
+#Events1.interval = 25, 30
+Events1.interval =290, 310
+#Events1.interval = 580,620
+# 25,30 (~120 texts/hour)
+# 290, 310 (~12 texts/hour)
+# 580, 620 (~ 6 texts/hour)
+# 1160, 1240 (~ 3 texts/ hour)
+# 2320, 2480 (~ 1 texts/ hour)
+
+Events1.size = 50k,100k
+Events1.time = 0,82944
+Events1.hosts = 0,49
+Events1.prefix = M
+
+
+MovementModel.rngSeed = 1
+MovementModel.worldSize = 1000, 1000
+MovementModel.warmup = 1
+
+Report.nrofReports = 5
+Report.warmup = 0
+Report.reportDir = reports/Random/WayPoint/C=3 D=-3/Node=50/INTEREST 4/
+Report.report1 = AllReport
+Report.report2 = MessageStatsReport_1
+Report.report3 = NodeInterestReport
+Report.report4 = CreatedMessagesReportInterest
+Report.report5 = BufferOccupancyReport
+
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+

@@ -1,0 +1,153 @@
+#Scenario information
+## Debora Issadha (Router Ayas)
+## Revised 12-10-2019
+
+#Nama skenario khusus Game of Life
+Scenario.name = HaggleInfocom5- [%%Group.router%%] [%%Group.nrofHosts%%] [C=%%DecisionEngineRouter.thCopy%%] [D=%%DecisionEngineRouter.thDelete%%] [TTL=%%Group.msgTtl%%] [Buffer=%%Group.bufferSize%%] [%%Events2.interval%%] [Speed=%%Group.speed%%]
+Scenario.simulateConnections = false
+Scenario.updateInterval = 1
+
+Scenario.endTime = 274883
+
+#987529 Haggle Cam
+#274883 Haggle 3 infocom 5
+#342915 Infocom6
+#16981816 Reality
+#6413284 Sassy
+
+Report.warmup = 1
+
+Scenario.nrofHostGroups = 1
+
+#Interfaces informations
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+btInterface.scanInterval = 120
+
+#Group Information
+## Buffer Size : 200 messages of 10 K ~ 2M
+Group.bufferSize = 10M
+
+Group.router = DecisionEngineRouter
+DecisionEngineRouter.decisionEngine = interest.GossipGoLRouter
+
+##COUNTER
+DecisionEngineRouter.thCopy = 5
+DecisionEngineRouter.thDelete = -5
+
+## TTL 24 hours=1440, 1 week= 10080, 2 week=20160, 3 weeks= 30240, 12 Hours = 720
+Group.msgTtl = 180
+
+#1440 Haggle Cam
+#360 Haggle 3 infocom 5
+#10080 Reality 20160
+#360 Infocom6
+#4320 Sassy
+
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+#Group1 Information
+Group1.groupID = A
+Group.waitTime = 10, 30 
+Group.speed = 0.5, 1.5
+
+#0.8, 1.4
+#2.5, 4.5
+
+## Total Node
+Group.nrofHosts = 41
+## Number of Hosts
+#36 Haggle Cam
+#41 Haggle
+#97 Reality
+
+Group.nodeLocation = 10, 10
+Group.movementModel = StationaryMovement
+#StationaryMovement gerak tetap
+#RandomWayPoint pergerakan acak
+
+#How many event generator
+Events.nrof = 2
+
+## Trace information
+Events1.class = ExternalEventsQueue
+Events1.filePath = Haggle3-Infocom5.txt
+
+#RealityConnectionTraceRevised.txt
+#Haggle4-Cam-Imote.csv
+#Haggle3-Infocom5.txt 
+#Haggle6-infocom6.csv
+#RealityConnectionTraceFinal.txt
+#sassy.csv
+
+## Message creation parameters
+Events2.class = MessageEventGenerator
+Events2.interval = 580, 620
+
+#97, 103
+# 25,30 (~120 texts/hour)
+# 290, 310 (~12 texts/hour)
+# 580, 620 (~ 6 texts/hour)
+# 1160, 1240 (~ 3 texts/ hour)
+# 2320, 2480 (~ 1 texts/ hour)
+
+##Events Size
+Events2.size = 250k, 300k
+
+#Haggle Cam 100k, 250k
+#Haggle 3 infocom 5  250k, 300k
+#Reality 20k
+#Infocom6 350k , 400k
+#Sassy 500k
+
+## range of message source/destination address 
+Events2.hosts = 0,40
+
+# 0, 35 Haggle Cam
+# 0, 40 Haggle 3 infocom 5
+# 0, 96 Reality
+# 0, 97 Infocom6
+# 0, 24 Sassy
+Events2.prefix = M
+
+##Events Time
+Events2.time = 0, 253283
+
+#987529 Haggle Cam 901129
+#274883 Haggle 3 infocom 5 253283
+#16981816 Reality 16377016 15772216
+#342915 Infocom6 321315
+#6413284 Sassy 6154084
+
+
+# World's size for Movement Models without implicit size (width, height; meters) 
+## Default (haggle) [100,100]
+MovementModel.worldSize = 100, 100
+MovementModel.warmup = 1
+
+# seed for movement models' pseudo random number generator (default = 0)
+## [2; 8372; 98092; 18293; 777]
+MovementModel.rngSeed = 1
+
+#ReportsInformations
+Report.nrofReports = 4
+
+Report.reportDir = reports/12OKT2019/HAGGLE-INFOCOM5/C=5/D=-5/
+
+#interval (per s)
+Report.interval = 3600
+
+Report.report1 = MessageStatsReport
+Report.report2 = MessageRelayedperTime
+Report.report3 = MessageDeletedperTime
+Report.report4 = GossipGOLReport
+
+#ResidueInterest
+#GOLDeletedReportperTime
+#MessageStatsReport
+#CommunityDetectionReport
+#NodeInterestReport
+#ConvergenceReport
+

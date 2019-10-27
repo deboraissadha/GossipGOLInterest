@@ -1,0 +1,172 @@
+#Scenario information
+## Debora Issadha
+## Revised 17-07-2019
+
+##WithInterest && WithCounter
+Scenario.name = Reality-MIT- [%%Group.router%%] [%%DecisionEngineRouter.R%%] [%%Group.nrofHosts%%] [C=%%DecisionEngineRouter.thCopy%%] [D=%%DecisionEngineRouter.thDelete%%] [TTL=%%Group.msgTtl%%] [Buffer=%%Group.bufferSize%%] [%%Events2.interval%%] [Speed=%%Group.speed%%]
+
+Scenario.simulateConnections = false
+Scenario.updateInterval = 1
+
+Scenario.endTime = 16981816
+
+#987529 Haggle Cam
+#274883 Haggle 3 infocom 5
+#342915 Infocom6
+#16981816 Reality (4245454 seperempat)
+#6413284 Sassy
+
+Report.warmup = 1
+Scenario.nrofHostGroups = 1
+
+#Interfaces informations
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+btInterface.scanInterval = 120
+
+#Group Information
+## Buffer Size : 200 messages of 10 K ~ 2M
+Group.bufferSize = 30M
+
+##INTEREST ROUTER
+Group.router = DecisionEngineRouter
+DecisionEngineRouter.R = [1;2;3;4]
+DecisionEngineRouter.decisionEngine = interest.GossipGoLwithInterestRouter
+
+#97
+Group.nodeList = [JENNIE:44,66,68,46,72,50,51,73,96,53,32,13,37,38,16,0,5,82,60,61,63,41,43,65,87/JISOO:33,77,22,67,78,69,36,47,49,27,2,3,4,6,90,80,9,81,71,83,84,40,85,42/LISA:11,55,12,34,45,23,35,25,48,15,59,28,19,1,7,8,70,93,94,95,74,64,54,10/ROSE:88,56,89,79,57,24,14,58,26,17,39,29,18,91,92,62,52,30,31,86,75,20,76,21;JENNIE:22,89,23,25,69,50,94,96,30,31,10,77,12,19,0,1,3,83,61,62,63,85,64,87,43/JISOO:88,44,66,13,35,68,24,15,26,37,48,27,28,29,90,80,81,40,51,95,20,86,76,21/LISA:11,33,78,45,56,57,14,58,59,38,39,18,5,7,91,70,92,71,93,52,74,53,42,65/ROSE:55,67,34,46,79,47,36,16,49,17,2,4,6,8,9,60,82,72,84,73,41,75,54,32;JENNIE:44,67,24,68,69,28,91,93,73,52,75,54,33,55,79,39,19,0,1,5,61,63,42,86,21/JISOO:66,22,23,35,25,47,15,48,38,3,6,90,80,8,92,60,71,94,84,95,85,65,76,32/LISA:34,78,56,12,46,14,58,59,26,37,49,16,2,7,9,81,83,62,41,30,64,53,87,43/ROSE:11,88,77,89,45,13,57,36,27,17,18,29,4,70,82,50,72,40,51,96,74,20,31,10;JENNIE:44,68,46,28,72,50,95,31,78,57,36,58,59,19,0,3,4,80,9,81,82,83,62,64,42/JISOO:66,88,45,89,23,34,24,13,48,38,39,18,2,6,90,70,93,60,73,30,53,87,65,54/LISA:22,55,67,12,69,15,27,16,17,1,7,8,91,71,40,51,84,41,85,63,96,20,75,32/ROSE:33,11,77,56,79,35,25,47,14,37,26,49,29,5,92,61,94,74,52,86,43,21,10,76]
+
+##COUNTER
+DecisionEngineRouter.thCopy = 5
+DecisionEngineRouter.thDelete = -4
+
+## TTL 24 hours=1440, 1 week= 10080, 2 week=20160, 3 weeks= 30240, 12 Hours = 720, 3 Days= 4320
+Group.msgTtl = 10080
+
+#1440 Haggle Cam
+#360 Haggle 3 infocom 5
+#10080 Reality 20160
+#360 Infocom6
+#4320 Sassy
+
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+#Group1 Information
+Group1.groupID = A
+Group.waitTime = 10, 30 
+Group.speed = 0.5, 1.5
+
+#0.8, 1.4
+#2.5, 4.5
+
+## Total Node
+Group.nrofHosts = 97
+## Number of Hosts
+#36 Haggle Cam
+#41 Haggle
+#97 Reality
+
+Group.nodeLocation = 10, 10
+Group.movementModel = StationaryMovement
+#StationaryMovement gerak tetap
+#RandomWayPoint pergerakan acak
+
+#How many event generator
+Events.nrof = 2
+
+## Trace information
+Events1.class = ExternalEventsQueue
+Events1.filePath = RealityConnectionTraceFinal.txt
+
+#RealityConnectionTraceRevised.txt
+#Haggle4-Cam-Imote.csv
+#Haggle3-Infocom5.txt 
+#Haggle6-infocom6.csv
+#RealityConnectionTraceFinal.txt
+#sassy.csv
+
+## Message creation parameters
+Events2.class = MessageEventGenerator
+Events2.interval = 580, 620
+
+#97, 103
+# 25,30 (~120 texts/hour)
+# 290, 310 (~12 texts/hour)
+# 580, 620 (~ 6 texts/hour)
+# 1160, 1240 (~ 3 texts/ hour)
+# 2320, 2480 (~ 1 texts/ hour)
+
+##Events Size
+Events2.size = 20k
+
+#Haggle Cam 100k, 250k
+#Haggle 3 infocom 5  250k, 300k
+#Reality 20k
+#Infocom6 350k , 400k
+#Sassy 500k
+
+## range of message source/destination address 
+Events2.hosts = 0, 96
+
+# 0, 35 Haggle Cam
+# 0, 40 Haggle 3 infocom 5
+# 0, 96 Reality
+# 0, 97 Infocom6
+# 0, 24 Sassy
+Events2.prefix = M
+
+##Events Time
+Events2.time = 0, 15772216
+
+#987529 Haggle Cam 901129
+#274883 Haggle 3 infocom 5 253283
+#16981816 Reality 16377016 15772216
+#342915 Infocom6 321315
+#6413284 Sassy 6154084
+
+
+# World's size for Movement Models without implicit size (width, height; meters) 
+## Default (haggle) [100,100]
+MovementModel.worldSize = 150, 150
+MovementModel.warmup = 1
+
+# seed for movement models' pseudo random number generator (default = 0)
+## [2; 8372; 98092; 18293; 777]
+MovementModel.rngSeed = 1
+
+#ReportsInformations
+Report.nrofReports = 13
+
+Report.reportDir = reports/09OKT2019/REALITY-MIT/WITH INTEREST/WITH GOL/C=5/D=-4/
+#Report classes to load
+
+#6 days 518400
+#3 days 259200
+#1 day 86400
+#1 hour 3600
+Report.interval = 86400
+
+##WITH INTEREST
+Report.report1 = AllReportInterest
+Report.report2 = NodeInterestReport
+Report.report3 = CreatedMessagesReportInterest
+Report.report4 = MessageRelayedperTime
+Report.report5 = TotalMessageRelayedperTime
+Report.report6 = MessageRelayedperTimeperInterest
+Report.report7 = TotalMessageRelayedperTimeperInterest
+Report.report8 = MessageDeletedperTime
+Report.report9 = TotalMessageDeletedperTime
+Report.report10 = MessageDeletedperTimeperInterest
+Report.report11 = TotalMessageDeletedperTimeperInterest
+Report.report12 = ResidueReport
+Report.report13 = ResidueInterestReport
+
+#ResidueInterest
+#SIRReport
+#MessageStatsReport
+#CommunityDetectionReport
+#NodeInterestReport
+#ConvergenceReport
+
